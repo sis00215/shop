@@ -1,3 +1,28 @@
+.main-bg{
+  height: 300px;
+  background-image: url('./img/main-bg.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.bold-text {
+  font-weight: bold;
+}
+
+.description{
+  font-size: 65%;
+  background-color: transparent grey;
+  background-position: center;
+  text-align: left;
+  margin-right: 0px;
+  margin-bottom: 100px;
+
+}
+
+.description p{
+  margin-bottom: 0px;
+}
+
 .App {
   text-align: center;
 }
