@@ -3,57 +3,58 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Navbar, Container, Nav, Row, Col} from 'react-bootstrap';
 import { useState } from 'react';
-import data from './data.js';
+import {BrowserRouter as Router, Routes, Route, Link, useNavigate, Outlet}from 'react-router-dom'
+// importing pages and data
+import data from './components/data.js';
+import {MainPage, Card} from'./routes/MainPage.js';
+import {Products, Detail} from './routes/Products.js';
+import NotFound from'./routes/NotFound.js';
+import {About, Member, Location} from'./routes/About.js';
+import {Event, EventOne, EventTwo} from'./routes/Event.js';
 
 
 function App() {
 
   let [tents] = useState(data);
+  // let MainPage = useState(MainPage);
 
   return (
     <div className="App">
-      <Navbar bg="Red" data-bs-theme="Red">
-        <Container>
-          <Navbar.Brand href="#home">TentShop</Navbar.Brand>
+      <Navbar bg="grey" data-bs-theme="grey">
+        <Container fluid>
+          <Navbar.Brand href="/">TentShop</Navbar.Brand>
           <Nav className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#features">Features</Nav.Link>
-            <Nav.Link href="#pricing">Pricing</Nav.Link>
+            <Link to="/" className="nav-link" replace>Home </Link>
+            <Link to="/products" className="nav-link" replace>Products</Link>
+            <Link to="/about" className="nav-link" replace> About </Link>
+            <Link to="/event" className="nav-link" replace>Event</Link>
+           <Link to="#pricing" className="nav-link" replace> Pricing</Link>
           </Nav>
         </Container>
       </Navbar>
 
-      <div className='main-bg'> </div>
-       {/* Columns of products */}
-       <Container>
-        <Row style={{marginTop: '15px'}}>
-         {/* component for listing products */}
-         <Card tents={tents}/>   
-        </Row>
-       </Container>
-      </div>
+      {/* Routes for diffrenet page layouts */}
+      <Routes>
+        <Route path="*" element={<NotFound/>} />
+        <Route path="/" element={ <div><MainPage tents={tents}/></div> }/>
+        <Route path="/products" element={<div><Products/></div>}>
+
+        </Route>
+        <Route path="/details/:id" element={<div><Detail tents={tents}/></div>}></Route>
+        <Route path="/about" element={<About/>}> 
+          <Route path="/about/member" element={<Member/>}></Route>
+          <Route path="/about/location" element={<Location/>}></Route>
+        </Route>
+        <Route path="/event" element={<Event/>}>  
+         <Route path="/event/EventOne" element={<EventOne/>}></Route> 
+         <Route path="/event/EventTwo" element={<EventTwo/>}></Route> 
+        </Route>
+
+      </Routes>
+
+
+    </div>
   );
 }
-
-//Card component for listing products
-function Card(props){
-  return (
-    props.tents.map((tent, i) => (
-      <Col sm={4} key={tent.id}>
-        <img src={tent.image} alt={tent.Category} width="80%" />
-        <h6>{`Price: $${tent.price}`}</h6>
-        <div className='description'>
-          <p><span style={{ fontWeight: 'bold' }}>Category:</span> {tent.Category}</p>
-          <p><span style={{ fontWeight: 'bold' }}>Packaged Weight:</span> {tent.PackagedWeight}</p>
-          <p><span style={{ fontWeight: 'bold' }}>Floor Dimensions:</span> {tent.FloorDimensions}</p>
-          <p><span style={{ fontWeight: 'bold' }}>Capacities:</span> {tent.Capacities}</p>
-        </div>
-      </Col>
-    ))
-  );
-  
-}
-
-
 
 export default App;

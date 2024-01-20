@@ -1,3 +1,33 @@
+
+.notfound{
+  font-size: 500%;
+  align-items: center;
+  justify-content: center;
+  margin-top: 100px;
+}
+
+
+.container{
+  margin-top: 15%;
+}
+
+.detailbox{
+ align-items: right;
+ border-color: black;
+ border-bottom: #282c34;
+}
+
+.col-md-6{
+  text-align: left;
+  align-items: center;
+  justify-content: center;
+  height: 100;
+}
+
+.col-md-6 p {
+  margin-bottom: 0;
+}
+
 .main-bg{
   height: 300px;
   background-image: url('./img/main-bg.jpg');
