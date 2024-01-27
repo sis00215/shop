@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {Navbar, Container, Nav, Row, Col} from 'react-bootstrap';
 import { useState } from 'react';
 import {BrowserRouter as Router, Routes, Route, Link, useNavigate, Outlet}from 'react-router-dom'
+import styled from 'styled-components'
 // importing pages and data
 import data from './components/data.js';
 import {MainPage, Card} from'./routes/MainPage.js';
@@ -11,6 +12,16 @@ import {Products, Detail} from './routes/Products.js';
 import NotFound from'./routes/NotFound.js';
 import {About, Member, Location} from'./routes/About.js';
 import {Event, EventOne, EventTwo} from'./routes/Event.js';
+
+let YellowBtn = styled.button`
+  backgroud : yellow;
+  color : balck;
+  padding : 10px;
+`
+let Box = styled.div`
+  bacgroud : grey;
+  padding : 20px;
+`
 
 
 function App() {
